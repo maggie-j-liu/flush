@@ -1,6 +1,18 @@
 {
   "name": "Flashcard Extension",
-  "description": "Blocks websites until you successfully answer a flashcard.",
+  "description": "Blocks websites until you successfully answer a series of flashcards.",
   "version": "1.0",
-  "manifest_version": 3
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["build/content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
