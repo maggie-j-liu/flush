@@ -17,6 +17,18 @@
   ],
   "permissions": ["storage"],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "flushed-emoji.png",
+      "32": "flushed-emoji.png",
+      "48": "flushed-emoji.png",
+      "128": "flushed-emoji.png"
+    }
+  },
+  "icons": {
+    "16": "flushed-emoji.png",
+    "32": "flushed-emoji.png",
+    "48": "flushed-emoji.png",
+    "128": "flushed-emoji.png"
   }
 }
