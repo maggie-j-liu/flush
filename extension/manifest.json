@@ -1,0 +1,6 @@
+{
+  "name": "Flashcard Extension",
+  "description": "Blocks websites until you successfully answer a flashcard.",
+  "version": "1.0",
+  "manifest_version": 3
+}
