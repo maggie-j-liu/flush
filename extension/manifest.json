@@ -14,5 +14,6 @@
       "resources": ["index.html"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "permissions": ["storage"]
 }

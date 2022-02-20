@@ -1,6 +1,20 @@
-console.log(document.location.href);
-if (document.location.href.startsWith("https://svelte.dev")) {
-  window.location.assign(
-    `${chrome.runtime.getURL("index.html")}?site=${document.location.href}`
-  );
+const isBlocked = () => {
+  return window.location.origin === "https://svelte.dev";
+};
+
+const redirect = () => {
+  window.location = `${chrome.runtime.getURL("index.html")}?site=${
+    window.location.href
+  }`;
+};
+
+if (isBlocked()) {
+  chrome.storage.local.get(window.location.origin, (res) => {
+    if (
+      !res[window.location.origin] ||
+      Date.now() > res[window.location.origin]
+    ) {
+      redirect();
+    }
+  });
 }
