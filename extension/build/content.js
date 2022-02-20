@@ -1,8 +1,10 @@
 (function () {
   'use strict';
 
+  let blockedSites = [];
+
   const isBlocked = () => {
-    return window.location.origin === "https://svelte.dev";
+    return blockedSites.includes(window.location.origin);
   };
 
   const redirect = () => {
@@ -11,16 +13,21 @@
   }`;
   };
 
-  if (isBlocked()) {
-    chrome.storage.local.get(window.location.origin, (res) => {
-      if (
-        !res[window.location.origin] ||
-        Date.now() > res[window.location.origin]
-      ) {
-        redirect();
-      }
-    });
-  }
+  chrome.storage.local.get("sites", (res) => {
+    if (res.sites) {
+      blockedSites = res.sites;
+    }
+    if (isBlocked()) {
+      chrome.storage.local.get(window.location.origin, (res) => {
+        if (
+          !res[window.location.origin] ||
+          Date.now() > res[window.location.origin]
+        ) {
+          redirect();
+        }
+      });
+    }
+  });
 
 })();
 //# sourceMappingURL=content.js.map

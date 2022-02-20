@@ -1,6 +1,6 @@
 {
   "name": "Flashcard Extension",
-  "description": "Blocks websites until you successfully answer a series of flashcards.",
+  "description": "Blocks websites until you successfully answer a flashcard.",
   "version": "1.0",
   "manifest_version": 3,
   "content_scripts": [
@@ -15,5 +15,8 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }

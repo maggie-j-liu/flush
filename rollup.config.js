@@ -34,14 +34,14 @@ function serve() {
   };
 }
 
-export default [
-  {
-    input: "src/main.js",
+const getConfig = (name, runServer) => {
+  return {
+    input: `src/${name}.js`,
     output: {
       sourcemap: true,
       format: "iife",
-      name: "app",
-      file: `${outDir}/build/bundle.js`,
+      name: name,
+      file: `${outDir}/build/${name}.js`,
     },
     plugins: [
       svelte({
@@ -59,7 +59,7 @@ export default [
 
       // we'll extract any component CSS out into
       // a separate file - better for performance
-      css({ output: "bundle.css" }),
+      css({ output: `${name}.css` }),
 
       // If you have external dependencies installed from
       // npm, you'll most likely need these plugins. In
@@ -74,7 +74,7 @@ export default [
 
       // In dev mode, call `npm run start` once
       // the bundle has been generated
-      !production && serve(),
+      !production && runServer && serve(),
 
       // Watch the `extension` directory and refresh the
       // browser on changes when not in production
@@ -87,7 +87,12 @@ export default [
     watch: {
       clearScreen: false,
     },
-  },
+  };
+};
+
+export default [
+  getConfig("main", false),
+  getConfig("popup", true),
   {
     input: "src/content.js",
     output: {

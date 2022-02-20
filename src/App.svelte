@@ -38,7 +38,7 @@
           () => {
             setTimeout(() => {
               window.location.href = site;
-            }, 3000);
+            }, 2000);
           }
         );
       }
@@ -110,6 +110,7 @@
         correct = false;
         showCardBack = false;
         availableCards.splice(flashcardIndex, 1);
+        availableCards = availableCards;
         if (availableCards.length === 0) {
           console.log("no more cards");
           availableCards = flashCards;
